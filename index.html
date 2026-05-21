@@ -31,7 +31,11 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
     body {
       margin: 0;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -39,6 +43,7 @@
       background:
         radial-gradient(circle at 8% 6%, rgba(197, 155, 59, .12), transparent 26rem),
         linear-gradient(180deg, var(--linen) 0%, var(--cream) 56%, #fffaf3 100%);
+      max-width: 100%;
       overflow-x: hidden;
     }
 
@@ -118,22 +123,29 @@
     .navbar-brand {
       display: flex;
       align-items: center;
-      gap: .75rem;
+      gap: .85rem;
       font-weight: 900;
       color: var(--leaf);
       letter-spacing: .02em;
     }
     .brand-mark {
-      width: 46px;
-      height: 46px;
-      border: 2px solid var(--gold);
-      border-radius: 50%;
+      width: 68px;
+      height: 58px;
+      /* border: 1px solid rgba(197, 155, 59, .52); */
+      /* border-radius: 8px; */
+      overflow: visible;
       display: grid;
       place-items: center;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.35rem;
-      line-height: 1;
-      background: rgba(255,255,255,.62);
+      /* background: rgba(255,255,255,.72); */
+      /* box-shadow: 0 8px 22px rgba(50, 37, 20, .08); */
+      padding: 4px;
+    }
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transform: none;
     }
     .brand-stack small {
       display: block;
@@ -583,8 +595,9 @@
     .newsletter {
       padding: 82px 0;
       background:
-        linear-gradient(rgba(24,59,33,.88), rgba(24,59,33,.88)),
+        linear-gradient(rgba(40, 43, 43, 0.88), rgba(57, 64, 59, 0.88)),
         url("assets/brand/coming-soon.jpeg") center/cover no-repeat;
+      background-attachment: fixed;
       color: #fffaf0;
       text-align: center;
     }
@@ -674,6 +687,10 @@
     }
     @media (max-width: 991px) {
       section { padding: 74px 0; }
+      .brand-mark {
+        width: 62px;
+        height: 52px;
+      }
       .navbar-collapse {
         margin-top: .8rem;
         padding: 1rem;
@@ -705,14 +722,45 @@
       .social-grid { grid-template-columns: 1fr; grid-auto-rows: 230px; }
       .social-tile.large { grid-row: span 1; }
     }
+    @media (max-width: 575px) {
+      .navbar-brand { gap: .6rem; }
+      .brand-mark {
+        width: 54px;
+        height: 46px;
+        padding: 3px;
+      }
+      .brand-stack {
+        font-size: .95rem;
+        max-width: 138px;
+        white-space: normal;
+        line-height: 1.05;
+      }
+      .brand-stack small { font-size: .54rem; }
+      .hero { padding-top: 104px; }
+      .hero h1 { font-size: clamp(2.8rem, 15vw, 4.2rem); }
+      .hero-actions { width: 100%; }
+      .hero-actions .btn-root { flex: 1 1 100%; }
+      .hero-stage { min-height: 360px; }
+      .product-card { padding: 20px; }
+      .flavour-row { grid-auto-columns: minmax(240px, 84vw); }
+      .story-badge {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        max-width: none;
+      }
+      .newsletter {
+        padding: 70px 0;
+      }
+    }
   </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg site-nav" id="mainNav" aria-label="Main navigation">
     <div class="container">
       <a class="navbar-brand" href="#home" aria-label="ROOT n RAW home">
-        <span class="brand-mark">Rr</span>
-        <span class="brand-stack">ROOT n RAW <small>Pure Nutrition</small></span>
+        <span class="brand-mark"><img src="assets/logo.jpeg" alt="ROOT n RAW logo"></span>
+        <!-- <span class="brand-stack">ROOT n RAW <small>Pure Nutrition</small></span> -->
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
         <i data-lucide="menu" class="icon"></i>
